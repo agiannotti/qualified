@@ -1,9 +1,9 @@
 function countPlayers(roster) {
-  let playerCount = 0;
+  let totalPlayers = 0;
   for (let i = 0; i < roster.length; i++) {
-    playerCount += 1;
+    totalPlayers++;
   }
-  return playerCount;
+  return totalPlayers;
 }
 
 function topScoringPlayer(roster) {
@@ -22,21 +22,25 @@ function topScoringPlayer(roster) {
 }
 
 function namesAndNumbers(roster) {
-  let str = [];
+  let namesAndNums = [];
   for (let i = 0; i < roster.length; i++) {
-    str.push(roster[i].name + '\n' + roster[i].number);
+    namesAndNums.push(`${roster[i].name}\n${roster[i].number}`);
   }
-  return str;
+  return namesAndNums;
 }
 
 function countPlayersAtPosition(roster, position) {
-  let totalAtPosition = 0;
-  for (let i = 0; i < roster.length; i++) {
-    if (roster[i].position === position) {
-      totalAtPosition++;
-    }
-  }
-  return totalAtPosition;
+  let myArr = roster.filter((poop) => poop.position === position);
+  return myArr.length;
 }
 
-function countPositions(roster, positions) {}
+function countPositions(roster, positions) {
+  let positionsRoster = {};
+  for (let i = 0; i < positions.length; i++) {
+    positionsRoster[positions[i]] = countPlayersAtPosition(
+      roster,
+      positions[i]
+    );
+  }
+  return positionsRoster;
+}
